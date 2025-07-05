@@ -2,13 +2,13 @@
 const employeeModel = require("../model/employeeModel");
 
 exports.addNewEmployeeController = async (req, res) => {
-  const { firstName, lastName, email, phoneNumber, designation } = req.body;
-  if (!firstName || !lastName || !email || !phoneNumber || !designation) {
+  const { firstName, lastName, email, phoneNumber, designation , cnic , address , salary , bank_account, hire_date, employee_id} = req.body;
+  if (!firstName || !lastName || !email || !phoneNumber || !designation || !cnic || !address || !salary || !bank_account  || !hire_date || !employee_id) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
   try {
-    await employeeModel.addEmployeeModel(firstName, lastName, email, phoneNumber, designation);
+    await employeeModel.addEmployeeModel(employee_id,firstName, lastName, email, phoneNumber, designation,cnic,address,salary,bank_account,hire_date);
     res.status(201).json({ message: "Employee added successfully" });
   } catch (err) {
     console.error("Add Employee Error:", err.message);
@@ -18,8 +18,9 @@ exports.addNewEmployeeController = async (req, res) => {
 
 exports.deleteEmployeeController = async (req, res) => {
   const { id } = req.params;
+  const {employee_id} = req.body;
   try {
-    await employeeModel.deleteEmployeeModel(id);
+    await employeeModel.deleteEmployeeModel(id,employee_id);
     res.json({ message: "Employee deleted successfully" });
   } catch (err) {
     console.error("Delete Employee Error:", err.message);
