@@ -13,12 +13,8 @@ router.get("/", async (req, res) => {
   res.send({ mesasge: "test api working" });
 });
 
-router.post("/login", (req, res) => {
- authenticationController.loginController(req,res)
-});
+router.post("/login",authenticationController.loginController);
+router.post("/signup", authenticationController.signupController);
 
-router.post("/signup", (req, res) => {
-  authenticationController.signupController(req,res)
-});
 
 module.exports = router;

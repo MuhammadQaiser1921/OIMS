@@ -1,6 +1,7 @@
 const mysql = require("mysql2") 
 const dotenv =require("dotenv").config()
-// singelton pattern for creating database connection instance
+
+// singelton design pattern for creating database connection instance
 
 class Database {
     constructor ( ){
@@ -19,7 +20,6 @@ class Database {
         }
         return Database.instance;
     }
-
 }
 
 module.exports = new Database();
